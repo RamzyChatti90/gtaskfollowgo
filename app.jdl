@@ -1,0 +1,64 @@
+application {
+  config {
+    baseName gtaskfollowgo
+    applicationType monolith
+    packageName com.taskflow
+    authenticationType jwt
+    prodDatabaseType postgresql
+    devDatabaseType h2Disk
+    enableTranslation Boolean
+    nativeLanguage fr
+    languages [fr, en]
+    buildTool maven
+    clientFramework angular
+    testFrameworks [cypress]
+    databaseType sql
+    serverPort 9000
+  }
+  entities *
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  DONE
+  BLOCKED
+}
+
+entity Task {
+  title String required
+  description String
+  priority TaskPriority required
+  status TaskStatus required
+  dueDate Instant
+  createdAt Instant required
+}
+
+entity Category {
+  name String required minlength(2) maxlength(50)
+  color String
+  icon String
+}
+
+entity Comment {
+  content String required minlength(2) maxlength(1000)
+  createdAt Instant required
+}
+
+relationship ManyToOne {
+  Task{assignee} to User with builtInEntity{login}
+  Task{category} to Category{name}
+  Comment{task} to Task{title}
+  Comment{author} to User with builtInEntity{login}
+}
+
+dto * with mapstruct
+service * with serviceImpl
+paginate * with pagination
