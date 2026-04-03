@@ -2,63 +2,56 @@ application {
   config {
     baseName gtaskfollowgo
     applicationType monolith
-    packageName com.taskflow
     authenticationType jwt
-    prodDatabaseType postgresql
-    devDatabaseType h2Disk
-    enableTranslation Boolean
-    nativeLanguage fr
-    languages [fr, en]
     buildTool maven
     clientFramework angular
-    testFrameworks [cypress]
     databaseType sql
+    devDatabaseType h2Disk
+    prodDatabaseType postgresql
+    packageName com.taskflow
     serverPort 9000
   }
   entities *
 }
 
-enum TaskPriority {
-  LOW
-  MEDIUM
-  HIGH
-  URGENT
-}
-
-enum TaskStatus {
-  TODO
-  IN_PROGRESS
-  DONE
-  BLOCKED
+entity AppUser {
+  login String required unique
+  firstName String
+  lastName String
+  email String required unique pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+  activated Boolean
+  langKey String
 }
 
 entity Task {
-  title String required
-  description String
-  priority TaskPriority required
-  status TaskStatus required
-  dueDate Instant
+  title String required minlength(3) maxlength(100)
+  description TextBlob
+  dueDate LocalDate
+  priority Integer min(1) max(5)
+  status String required pattern(/^(TODO|IN_PROGRESS|DONE|BLOCKED)$/)
   createdAt Instant required
+  updatedAt Instant
 }
 
-entity Category {
-  name String required minlength(2) maxlength(50)
-  color String
-  icon String
+entity Tag {
+  name String required unique minlength(2) maxlength(50)
 }
 
 entity Comment {
-  content String required minlength(2) maxlength(1000)
+  content TextBlob required
   createdAt Instant required
 }
 
 relationship ManyToOne {
-  Task{assignee} to User with builtInEntity{login}
-  Task{category} to Category{name}
-  Comment{task} to Task{title}
-  Comment{author} to User with builtInEntity{login}
+  Task{assignedTo} to AppUser
+  Comment{task} to Task
+  Comment{author} to AppUser
+}
+
+relationship ManyToMany {
+  Task{tag} to Tag{task}
 }
 
 dto * with mapstruct
 service * with serviceImpl
-paginate * with pagination
+paginate Task, AppUser with pagination

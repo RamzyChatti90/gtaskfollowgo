@@ -1,0 +1,20 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "gtaskfollowgo",
+    "buildTool": "maven",
+    "clientFramework": "angular",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "entities": ["AppUser", "Task", "Tag", "Comment"],
+    "jhipsterVersion": "8.11.0",
+    "jwtSecretKey": "M2M4MWIyM2E0YzgxOWMwYThjMzRjOTlhMTIzOWMxNjlhNzgxNmU5YjRkZWZiNDI0NGZmMjJkZTFhNTI4YzFjOTA5ODc5YWZkMDc2Y2JmYTM4MGY1OTNkY2ZmNWRjMTBmOTIwYjgxZjVmOWI2YmU5Mzg3NGJmNzE4OWQ5NjI0NWM=",
+    "languages": ["en"],
+    "lastLiquibaseTimestamp": 1775204579000,
+    "nativeLanguage": "en",
+    "packageName": "com.taskflow",
+    "prodDatabaseType": "postgresql",
+    "serverPort": "9000"
+  }
+}

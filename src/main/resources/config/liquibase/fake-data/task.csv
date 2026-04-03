@@ -1,0 +1,11 @@
+id;title;description;due_date;priority;status;created_at;updated_at
+1;furiously;../fake-data/blob/hipster.txt;2026-04-02;5;"DONE";2026-04-02T15:30:02;2026-04-03T03:48:24
+2;past inasmuch;../fake-data/blob/hipster.txt;2026-04-02;4;"DONE";2026-04-02T21:39:43;2026-04-02T14:47:21
+3;intermix powerfully;../fake-data/blob/hipster.txt;2026-04-03;5;"TODO";2026-04-02T19:00:56;2026-04-03T08:06:54
+4;oof;../fake-data/blob/hipster.txt;2026-04-03;3;"TODO";2026-04-02T12:44:46;2026-04-02T13:24:09
+5;hoick;../fake-data/blob/hipster.txt;2026-04-02;2;"IN_PROGRESS";2026-04-03T04:46:01;2026-04-02T18:31:53
+6;unethically;../fake-data/blob/hipster.txt;2026-04-02;4;"TODO";2026-04-02T19:08:44;2026-04-03T04:58:51
+7;nutritious tight insistent;../fake-data/blob/hipster.txt;2026-04-02;5;"DONE";2026-04-03T02:03:31;2026-04-03T04:19:42
+8;ha apud overplay;../fake-data/blob/hipster.txt;2026-04-03;3;"DONE";2026-04-02T19:57:28;2026-04-02T22:44:11
+9;pharmacopoeia fooey um;../fake-data/blob/hipster.txt;2026-04-02;5;"IN_PROGRESS";2026-04-02T08:28:12;2026-04-03T00:51:52
+10;usefully for unto;../fake-data/blob/hipster.txt;2026-04-02;3;"DONE";2026-04-03T08:04:17;2026-04-03T00:58:49

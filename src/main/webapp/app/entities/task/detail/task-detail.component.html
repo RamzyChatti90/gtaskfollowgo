@@ -1,0 +1,75 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (task(); as taskRef) {
+      <div>
+        <h2 data-cy="taskDetailsHeading"><span jhiTranslate="gtaskfollowgoApp.task.detail.title">Task</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ taskRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gtaskfollowgoApp.task.title">Title</span></dt>
+          <dd>
+            <span>{{ taskRef.title }}</span>
+          </dd>
+          <dt><span jhiTranslate="gtaskfollowgoApp.task.description">Description</span></dt>
+          <dd>
+            <span>{{ taskRef.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="gtaskfollowgoApp.task.dueDate">Due Date</span></dt>
+          <dd>
+            <span>{{ taskRef.dueDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="gtaskfollowgoApp.task.priority">Priority</span></dt>
+          <dd>
+            <span>{{ taskRef.priority }}</span>
+          </dd>
+          <dt><span jhiTranslate="gtaskfollowgoApp.task.status">Status</span></dt>
+          <dd>
+            <span>{{ taskRef.status }}</span>
+          </dd>
+          <dt><span jhiTranslate="gtaskfollowgoApp.task.createdAt">Created At</span></dt>
+          <dd>
+            <span>{{ taskRef.createdAt | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="gtaskfollowgoApp.task.updatedAt">Updated At</span></dt>
+          <dd>
+            <span>{{ taskRef.updatedAt | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="gtaskfollowgoApp.task.assignedTo">Assigned To</span></dt>
+          <dd>
+            @if (task()!.assignedTo) {
+              <div>
+                <a [routerLink]="['/app-user', task()!.assignedTo?.id, 'view']">{{ taskRef.assignedTo?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gtaskfollowgoApp.task.tag">Tag</span></dt>
+          <dd>
+            @for (tag of taskRef.tags; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/tag', tag.id, 'view']">{{ tag?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/task', taskRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
